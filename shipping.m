@@ -75,10 +75,19 @@ function [x, gval] = shipping(values)
     f_coeff = repelem(values, 3);
     % Minimizes -dot(f_coeff, x), so maximizes dot(f_coeff, x)
     f = -f_coeff;
-
+    
     result = intlinprog(f, intcon, A, b, Aeq, beq, lb, ub);
     gval(i) = f_coeff * result;
     % Scale coefficients down to get from 100kg -> 1 ton
     x(:, :, i) = reshape(result / 10, [3 4]);
   end
+  
+  % Plot graph  
+  plot(gval, '-o');
+  grid on;
+  set(gca, 'XTickLabel', 10:10:values(1)*10);
+  xlabel('value(4)')
+  ylabel('gval')
+  title('Optimal shipping value');
+  
 end
