@@ -1,4 +1,5 @@
 function [x, gval] = shipping(values)
+  % To run: shipping([x y z])
   if ~isvector(values) || length(values) ~= 3
 		error('Input must be a vector of length 3');
   end
@@ -82,12 +83,20 @@ function [x, gval] = shipping(values)
     x(:, :, i) = reshape(result / 10, [3 4]);
   end
   
-  % Plot graph  
+  % Plot graph in new window
   plot(gval, '-o');
   grid on;
+  % Scale 1 ton -> 100kg
   set(gca, 'XTickLabel', 10:10:values(1)*10);
   xlabel('value(4)')
   ylabel('gval')
   title('Optimal shipping value');
+  
+  % Print output
+  disp('------------- x -------------- ');
+  disp(x);
+  disp('------------------------------ ');
+  disp('gval = ');
+  disp(gval);
   
 end
