@@ -84,9 +84,11 @@ function [x, gval] = shipping(values)
   end
   
   % Plot graph in new window
-  x_axis = 10:10:length(x(:,:,:))*10;
-  plot(x_axis, gval, '-o');
+  x_axis = [10:10:length(x
+  plot(gval, '-o');
   grid on;
+  % Scale 1 ton -> 100kg
+  % set(gca, 'XTickLabel', 10:length(x(:,:,:)));
   xlabel('value(4)')
   ylabel('gval')
   title('Optimal shipping value');
